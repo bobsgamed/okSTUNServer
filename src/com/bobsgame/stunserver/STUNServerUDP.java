@@ -2,6 +2,7 @@ package com.bobsgame.stunserver;
 
 import static org.jboss.netty.channel.Channels.pipeline;
 
+import java.io.File;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.util.Vector;
@@ -118,10 +119,13 @@ public class STUNServerUDP
 
 		//connectionlessBootstrap.setOption("reuseAddress", "true");
 
-		connectionlessBootstrap.setOption("localAddress", new InetSocketAddress(BobNet.STUNServerUDPPort));
+		int serverPort = BobNet.STUNServerUDPPort;
+		if(new File("/localServer").exists())serverPort++;
+
+		connectionlessBootstrap.setOption("localAddress", new InetSocketAddress(serverPort));
 		//connectionlessBootstrap.setOption("tcpNoDelay", true);
 
-		channel = connectionlessBootstrap.bind(new InetSocketAddress(BobNet.STUNServerUDPPort));
+		channel = connectionlessBootstrap.bind(new InetSocketAddress(serverPort));
 
 		log.info("udp Channel: "+channel.getId().toString());
 
