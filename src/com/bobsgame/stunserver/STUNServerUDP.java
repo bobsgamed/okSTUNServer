@@ -120,7 +120,7 @@ public class STUNServerUDP
 		//connectionlessBootstrap.setOption("reuseAddress", "true");
 
 		int serverPort = BobNet.STUNServerUDPPort;
-		if(new File("/localServer").exists())serverPort++;
+		//if(new File("/localServer").exists())serverPort++;
 
 		connectionlessBootstrap.setOption("localAddress", new InetSocketAddress(serverPort));
 		//connectionlessBootstrap.setOption("tcpNoDelay", true);
